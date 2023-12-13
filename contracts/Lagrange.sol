@@ -1,7 +1,7 @@
-pragma solidity 0.5.7;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.4;
 
 import "gf256-sol/contracts/GF256.sol";
-
 
 library Lagrange {
 
@@ -10,7 +10,7 @@ library Lagrange {
     function addPolynomials(
         uint8[] memory a,
         uint8[] memory b
-    ) public pure returns (uint8[] memory) {
+    ) internal pure returns (uint8[] memory) {
         uint256 len;
         if (a.length < b.length) {
             len = b.length;
@@ -32,7 +32,7 @@ library Lagrange {
     function multiplyPolynomials(
         uint8[] memory a,
         uint8[] memory b
-    ) public pure returns (uint8[] memory resultTerms) {
+    ) internal pure returns (uint8[] memory resultTerms) {
         uint256 padding = 0;
         for (uint256 i = 0; i < b.length; i++) {
             uint8[] memory currentValues = new uint8[](a.length + padding);
@@ -52,7 +52,7 @@ library Lagrange {
     function fullLagrange(
         uint8[] memory xs,
         uint8[] memory fxs
-    ) public pure returns (uint8[] memory result) {
+    ) internal pure returns (uint8[] memory result) {
         uint256 len = fxs.length;
         for (uint256 i = 0; i < len; i++) {
             uint8[] memory thisPoly = new uint8[](1);
